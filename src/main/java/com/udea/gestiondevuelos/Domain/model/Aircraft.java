@@ -1,4 +1,5 @@
-package com.udea.gestiondevuelos.model;
+package com.udea.gestiondevuelos.Domain.model;
+import com.udea.gestiondevuelos.Domain.Enums.AircraftModel;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,16 +12,18 @@ public class Aircraft {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String aircraftType;
+    private AircraftModel aircraftModel;
 
     private int maxSeats;
 
     private String seatConfiguration;
 
-    public Aircraft(){}
+    public Aircraft() {
+    }
 
-    public Aircraft(String type, int maxSeats, String seatConfiguration) {
-        this.aircraftType = aircraftType;
+    public Aircraft(Long id, AircraftModel aircraftModel, int maxSeats, String seatConfiguration) {
+        this.id = id;
+        this.aircraftModel = aircraftModel;
         this.maxSeats = maxSeats;
         this.seatConfiguration = seatConfiguration;
     }
@@ -33,12 +36,12 @@ public class Aircraft {
         this.id = id;
     }
 
-    public String getAircraftType() {
-        return aircraftType;
+    public AircraftModel getAircraftModel() {
+        return aircraftModel;
     }
 
-    public void setAircraftType(String type) {
-        this.aircraftType = aircraftType;
+    public void setAircraftModel(AircraftModel aircraftModel) {
+        this.aircraftModel = aircraftModel;
     }
 
     public int getMaxSeats() {

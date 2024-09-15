@@ -1,4 +1,4 @@
-package com.udea.gestiondevuelos.model;
+package com.udea.gestiondevuelos.Domain.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
