@@ -1,9 +1,6 @@
 package com.udea.gestiondevuelos.Domain.model;
 import com.udea.gestiondevuelos.Domain.Enums.AircraftModel;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Aircraft {
@@ -12,16 +9,17 @@ public class Aircraft {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     private AircraftModel aircraftModel;
 
-    private int maxSeats;
+    private Integer maxSeats;
 
     private String seatConfiguration;
 
     public Aircraft() {
     }
 
-    public Aircraft(Long id, AircraftModel aircraftModel, int maxSeats, String seatConfiguration) {
+    public Aircraft(Long id, AircraftModel aircraftModel, Integer maxSeats, String seatConfiguration) {
         this.id = id;
         this.aircraftModel = aircraftModel;
         this.maxSeats = maxSeats;
@@ -44,11 +42,11 @@ public class Aircraft {
         this.aircraftModel = aircraftModel;
     }
 
-    public int getMaxSeats() {
+    public Integer getMaxSeats() {
         return maxSeats;
     }
 
-    public void setMaxSeats(int maxSeats) {
+    public void setMaxSeats(Integer maxSeats) {
         this.maxSeats = maxSeats;
     }
 

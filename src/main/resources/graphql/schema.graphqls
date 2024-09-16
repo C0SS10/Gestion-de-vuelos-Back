@@ -1,0 +1,10 @@
+type Query {
+    allAircrafts: [Aircraft]
+}
+
+type Aircraft {
+    id: ID!
+    aircraftModel: String!
+    maxSeats: Int!
+    seatConfiguration: String
+}
