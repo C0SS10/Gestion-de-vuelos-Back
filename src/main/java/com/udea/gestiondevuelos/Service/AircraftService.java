@@ -38,7 +38,19 @@ public class AircraftService implements IAircraftService{
     }
 
     @Override
+    public AircraftDTO updateAircraft(Long id, AircraftDTO aircraftDTO){
+        Aircraft aircraft = aircraftRepository.findById(id).orElseThrow(()-> new EntityNotFoundException(String.format("El avion con el ID %d no fue encontrado", id)));
+        aircraft.setAircraftModel(aircraftDTO.getAircraftModel());
+        aircraft.setMaxSeats(aircraftDTO.getMaxSeats());
+        aircraft.setSeatConfiguration(aircraftDTO.getSeatConfiguration());
+        return toDTO(aircraftRepository.save(aircraft));
+    }
+
+    @Override
     public void deleteAircraft(Long id){
+        if(!aircraftRepository.existsById(id)){
+            throw new EntityNotFoundException(String.format("El avion con el ID %d no fue encontrado", id));
+        }
         aircraftRepository.deleteById(id);
     }
 

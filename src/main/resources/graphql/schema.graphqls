@@ -1,10 +1,31 @@
 type Query {
-    allAircrafts: [Aircraft]
+    allAircrafts: [AircraftDTO]
+    aircraftById (id:ID!) : AircraftDTO
 }
 
-type Aircraft {
-    id: ID!
-    aircraftModel: String!
+type Mutation{
+    createAircraft(input: AircraftInput): AircraftDTO
+    updateAircraft(id: ID!, input: AircraftInput): AircraftDTO
+    deleteAircraft(id: ID!):Boolean
+}
+
+input AircraftInput{
+    aircraftModel: AircraftModel
+    maxSeats: Int
+    seatConfiguration:String
+}
+
+type AircraftDTO {
+    id: ID
+    aircraftModel: AircraftModel!
     maxSeats: Int!
-    seatConfiguration: String
+    seatConfiguration: String!
+}
+
+enum AircraftModel{
+    Boeing_737,
+    Airbus_A320,
+    Boeing_777,
+    Airbus_A330,
+    Boeing_787Dreamliner
 }

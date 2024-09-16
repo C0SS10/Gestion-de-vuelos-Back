@@ -8,5 +8,6 @@ public interface IAircraftService {
     AircraftDTO createAircraft(AircraftDTO aircraftDTO);
     List<AircraftDTO> getAllAircrafts();
     AircraftDTO getAircraftById(Long Id);
+    AircraftDTO updateAircraft(Long id, AircraftDTO aircraftDTO);
     void deleteAircraft(Long Id);
 }
