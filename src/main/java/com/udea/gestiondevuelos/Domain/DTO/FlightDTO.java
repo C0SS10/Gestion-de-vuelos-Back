@@ -1,6 +1,7 @@
 package com.udea.gestiondevuelos.Domain.DTO;
 
-import java.math.BigDecimal;
+import com.udea.gestiondevuelos.Domain.Enums.AircraftModel;
+import com.udea.gestiondevuelos.Domain.Enums.FlightType;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -9,13 +10,13 @@ public class FlightDTO {
 
     private String flightNumber;
 
-    private String flightType;
+    private FlightType flightType;
 
     private String departureCity;
 
     private String destinationCity;
 
-    private String aircraftType;
+    private AircraftModel aircraftModel;
 
     private LocalDate departureDate;
 
@@ -25,21 +26,21 @@ public class FlightDTO {
 
     private LocalTime arrivalTime;
 
-    private BigDecimal price;
+    private Double price;
 
-    private BigDecimal taxPercentage;
+    private Double taxPercentage;
 
-    private BigDecimal surcharge;
+    private Double surcharge;
 
-    public FlightDTO() {
-    }
+    public FlightDTO(){}
 
-    public FlightDTO(String flightNumber, String flightType, String departureCity, String destinationCity, String aircraftType, LocalDate departureDate, LocalDate arrivalDate, LocalTime departureTime, LocalTime arrivalTime, BigDecimal price, BigDecimal taxPercentage, BigDecimal surcharge) {
+    public FlightDTO(Long id, String flightNumber, FlightType flightType, String departureCity, String destinationCity, AircraftModel aircraftModel, LocalDate departureDate, LocalDate arrivalDate, LocalTime departureTime, LocalTime arrivalTime, Double price, Double taxPercentage, Double surcharge) {
+        this.id = id;
         this.flightNumber = flightNumber;
         this.flightType = flightType;
         this.departureCity = departureCity;
         this.destinationCity = destinationCity;
-        this.aircraftType = aircraftType;
+        this.aircraftModel = aircraftModel;
         this.departureDate = departureDate;
         this.arrivalDate = arrivalDate;
         this.departureTime = departureTime;
@@ -47,6 +48,14 @@ public class FlightDTO {
         this.price = price;
         this.taxPercentage = taxPercentage;
         this.surcharge = surcharge;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFlightNumber() {
@@ -57,11 +66,11 @@ public class FlightDTO {
         this.flightNumber = flightNumber;
     }
 
-    public String getFlightType() {
+    public FlightType getFlightType() {
         return flightType;
     }
 
-    public void setFlightType(String flightType) {
+    public void setFlightType(FlightType flightType) {
         this.flightType = flightType;
     }
 
@@ -81,12 +90,12 @@ public class FlightDTO {
         this.destinationCity = destinationCity;
     }
 
-    public String getAircraftType() {
-        return aircraftType;
+    public AircraftModel getAircraftModel() {
+        return aircraftModel;
     }
 
-    public void setAircraftType(String aircraftType) {
-        this.aircraftType = aircraftType;
+    public void setAircraftModel(AircraftModel aircraftModel) {
+        this.aircraftModel = aircraftModel;
     }
 
     public LocalDate getDepartureDate() {
@@ -121,27 +130,27 @@ public class FlightDTO {
         this.arrivalTime = arrivalTime;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public BigDecimal getTaxPercentage() {
+    public Double getTaxPercentage() {
         return taxPercentage;
     }
 
-    public void setTaxPercentage(BigDecimal taxPercentage) {
+    public void setTaxPercentage(Double taxPercentage) {
         this.taxPercentage = taxPercentage;
     }
 
-    public BigDecimal getSurcharge() {
+    public Double getSurcharge() {
         return surcharge;
     }
 
-    public void setSurcharge(BigDecimal surcharge) {
+    public void setSurcharge(Double surcharge) {
         this.surcharge = surcharge;
     }
 }
