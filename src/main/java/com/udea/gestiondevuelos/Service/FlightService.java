@@ -1,8 +1,10 @@
 package com.udea.gestiondevuelos.Service;
 
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.udea.gestiondevuelos.Domain.DTO.FlightDTO;
 import com.udea.gestiondevuelos.Domain.model.Aircraft;
 import com.udea.gestiondevuelos.Domain.model.Flight;
+import com.udea.gestiondevuelos.Domain.model.QFlight;
 import com.udea.gestiondevuelos.Mappers.AircraftMappers;
 import com.udea.gestiondevuelos.Mappers.FlightMappers;
 import com.udea.gestiondevuelos.Repository.IFlightRepository;
@@ -10,6 +12,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,8 +40,27 @@ public class FlightService implements  IFlightService{
     }
 
     @Override
-    public List<FlightDTO> getAllFlights(){
-        return flightRepository.findAll().stream().map(flight -> flightMappers.toFlightDTO(flight)).collect(Collectors.toList());
+    public List<FlightDTO> getFlightsByFilters(String origin, String destination, String departureDate, String arrivalDate){
+        QFlight flight = QFlight.flight;
+        BooleanExpression predicate = flight.isNotNull();
+        if(origin != null){
+            predicate = predicate.and(flight.departureCity.eq(origin));
+        }
+        if(destination != null){
+            predicate = predicate.and(flight.destinationCity.eq(destination));
+        }
+        if(departureDate != null){
+            LocalDate date = LocalDate.parse(departureDate);
+            predicate = predicate.and(flight.departureDate.eq(date));
+        }
+        if(arrivalDate != null){
+            LocalDate date = LocalDate.parse(arrivalDate);
+            predicate = predicate.and(flight.arrivalDate.eq(date));
+        }
+        List<Flight> flights = (List<Flight>) flightRepository.findAll(predicate);
+        return flights.stream()
+                .map(item -> flightMappers.toFlightDTO(item))
+                .collect(Collectors.toList());
     }
 
     @Override

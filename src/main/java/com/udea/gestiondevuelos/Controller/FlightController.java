@@ -16,9 +16,13 @@ public class FlightController {
     @Autowired
     public IFlightService flightService;
 
-    @QueryMapping(name = "allFlights")
-    public List<FlightDTO> allFlights (){
-        return flightService.getAllFlights();
+    @QueryMapping(name = "getFlightsByFilters")
+    public List<FlightDTO> getFlightsByFilters (
+            @Argument(name = "origin") String origin,
+            @Argument(name = "destination") String destination,
+            @Argument(name = "departureDate") String departureDate,
+            @Argument(name = "arrivalDate") String arrivalDate) {
+        return flightService.getFlightsByFilters(origin, destination, departureDate, arrivalDate);
     }
 
     @QueryMapping(name = "flightById")

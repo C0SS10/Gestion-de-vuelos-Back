@@ -1,7 +1,11 @@
 package com.udea.gestiondevuelos.Service;
 
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.udea.gestiondevuelos.Domain.DTO.AircraftDTO;
+import com.udea.gestiondevuelos.Domain.Enums.AircraftModel;
+import com.udea.gestiondevuelos.Domain.Enums.SeatConfiguration;
 import com.udea.gestiondevuelos.Domain.model.Aircraft;
+import com.udea.gestiondevuelos.Domain.model.QAircraft;
 import com.udea.gestiondevuelos.Mappers.AircraftMappers;
 import com.udea.gestiondevuelos.Repository.IAircraftRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -20,15 +24,31 @@ public class AircraftService implements IAircraftService{
     @Autowired
     private AircraftMappers aircraftMappers;
 
+
     @Override
     public AircraftDTO createAircraft ( AircraftDTO aircraftDTO){
         return aircraftMappers.toAircraftDTO(aircraftRepository.save(aircraftMappers.toAircraftEntity(aircraftDTO)));
     }
 
     @Override
-    public List<AircraftDTO> getAllAircrafts(){
-        List<Aircraft> aircrafts = aircraftRepository.findAll();
-        return aircrafts.stream().map(aircraft -> aircraftMappers.toAircraftDTO(aircraft)).collect(Collectors.toList());
+    public List<AircraftDTO> filterAircrafts(String aircraftModel, Integer maxSeats, String seatConfiguration){
+        QAircraft aircraft = QAircraft.aircraft;
+        BooleanExpression predicate = aircraft.isNotNull();
+        if(aircraftModel != null){
+            AircraftModel modelEnum = AircraftModel.valueOf(aircraftModel);
+            predicate = predicate.and(aircraft.aircraftModel.eq(modelEnum));
+        }
+        if(maxSeats != null){
+            predicate = predicate.and(aircraft.maxSeats.goe(maxSeats));
+        }
+        if(seatConfiguration != null){
+            SeatConfiguration configuration = SeatConfiguration.valueOf(seatConfiguration);
+            predicate = predicate.and(aircraft.seatConfiguration.eq(configuration));
+        }
+        List<Aircraft> aircrafts = (List<Aircraft>) aircraftRepository.findAll(predicate); // Casting a List
+        return aircrafts.stream()
+                .map(item -> aircraftMappers.toAircraftDTO(item))
+                .collect(Collectors.toList());
     }
 
     @Override

@@ -16,9 +16,12 @@ public class AircraftController {
     @Autowired
     private IAircraftService aircraftService;
 
-    @QueryMapping(name = "allAircrafts")
-    public List<AircraftDTO> allAircrafts(){
-        return aircraftService.getAllAircrafts();
+    @QueryMapping(name = "getAircraftsByFilters")
+    public List<AircraftDTO> getAircraftsByFilters(
+            @Argument(name = "aircraftModel") String aircraftModel,
+            @Argument(name = "maxSeats") Integer maxSeats,
+            @Argument(name = "seatConfiguration") String seatConfiguration){
+        return aircraftService.filterAircrafts(aircraftModel,maxSeats,seatConfiguration);
     }
 
     @QueryMapping(name = "aircraftById")

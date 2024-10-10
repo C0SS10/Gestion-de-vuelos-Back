@@ -1,7 +1,7 @@
 type Query {
-    allAircrafts: [AircraftDTO]
+    getAircraftsByFilters(aircraftModel:AircraftModel, maxSeats:Int, seatConfiguration:SeatConfiguration): [AircraftDTO]
     aircraftById (id:ID!) : AircraftDTO
-    allFlights : [FlightDTO]
+    getFlightsByFilters(departureCity:String, destinationCity:String, departureDate:String,arrivalDate:String) : [FlightDTO]
     flightById (id: ID!) : FlightDTO
 }
 
