@@ -17,7 +17,7 @@ type Mutation{
 input AircraftInput{
     aircraftModel: AircraftModel
     maxSeats: Int
-    seatConfiguration:String
+    seatConfiguration: SeatConfiguration
 }
 
 input FlightInput {
@@ -25,7 +25,7 @@ input FlightInput {
     flightType: FlightType
     departureCity: String
     destinationCity: String
-    aircraftModel: AircraftModel
+    aircraftId: ID
     departureDate: String
     arrivalDate: String
     departureTime: String
@@ -48,7 +48,7 @@ type FlightDTO {
     flightType: FlightType!
     departureCity: String!
     destinationCity: String!
-    aircraftModel: AircraftModel!
+    aircraftId: ID!
     departureDate: String!
     arrivalDate: String!
     departureTime: String!
@@ -59,14 +59,19 @@ type FlightDTO {
 }
 
 enum AircraftModel{
-    Boeing_737,
-    Airbus_A320,
-    Boeing_777,
-    Airbus_A330,
-    Boeing_787Dreamliner
+    B737,
+    A320,
+    A330,
+    B737D
 }
 
 enum FlightType{
     NACIONAL,
     INTERNACIONAL
+}
+
+enum SeatConfiguration{
+    TWO_TWO_TWO,
+    THREE_THREE_THREE,
+    TWO_FOUR_TWO
 }

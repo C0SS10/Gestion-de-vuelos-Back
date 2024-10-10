@@ -1,6 +1,5 @@
 package com.udea.gestiondevuelos.Domain.DTO;
 
-import com.udea.gestiondevuelos.Domain.Enums.AircraftModel;
 import com.udea.gestiondevuelos.Domain.Enums.FlightType;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -16,7 +15,7 @@ public class FlightDTO {
 
     private String destinationCity;
 
-    private AircraftModel aircraftModel;
+    private Long aircraftId;
 
     private LocalDate departureDate;
 
@@ -34,13 +33,13 @@ public class FlightDTO {
 
     public FlightDTO(){}
 
-    public FlightDTO(Long id, String flightNumber, FlightType flightType, String departureCity, String destinationCity, AircraftModel aircraftModel, LocalDate departureDate, LocalDate arrivalDate, LocalTime departureTime, LocalTime arrivalTime, Double price, Double taxPercentage, Double surcharge) {
+    public FlightDTO(Long id, String flightNumber, FlightType flightType, String departureCity, String destinationCity, Long aircraftId, LocalDate departureDate, LocalDate arrivalDate, LocalTime departureTime, LocalTime arrivalTime, Double price, Double taxPercentage, Double surcharge) {
         this.id = id;
         this.flightNumber = flightNumber;
         this.flightType = flightType;
         this.departureCity = departureCity;
         this.destinationCity = destinationCity;
-        this.aircraftModel = aircraftModel;
+        this.aircraftId = aircraftId;
         this.departureDate = departureDate;
         this.arrivalDate = arrivalDate;
         this.departureTime = departureTime;
@@ -90,12 +89,12 @@ public class FlightDTO {
         this.destinationCity = destinationCity;
     }
 
-    public AircraftModel getAircraftModel() {
-        return aircraftModel;
+    public Long getAircraftId() {
+        return aircraftId;
     }
 
-    public void setAircraftModel(AircraftModel aircraftModel) {
-        this.aircraftModel = aircraftModel;
+    public void setAircraftId(Long aircraftId) {
+        this.aircraftId = aircraftId;
     }
 
     public LocalDate getDepartureDate() {

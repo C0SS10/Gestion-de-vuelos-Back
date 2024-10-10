@@ -2,6 +2,7 @@ package com.udea.gestiondevuelos.Service;
 
 import com.udea.gestiondevuelos.Domain.DTO.AircraftDTO;
 import com.udea.gestiondevuelos.Domain.model.Aircraft;
+import com.udea.gestiondevuelos.Mappers.AircraftMappers;
 import com.udea.gestiondevuelos.Repository.IAircraftRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,25 +17,24 @@ public class AircraftService implements IAircraftService{
     @Autowired
     private IAircraftRepository aircraftRepository;
 
+    @Autowired
+    private AircraftMappers aircraftMappers;
+
     @Override
     public AircraftDTO createAircraft ( AircraftDTO aircraftDTO){
-        Aircraft aircraft = new Aircraft();
-        aircraft.setAircraftModel(aircraftDTO.getAircraftModel());
-        aircraft.setMaxSeats(aircraftDTO.getMaxSeats());
-        aircraft.setSeatConfiguration(aircraftDTO.getSeatConfiguration());
-        return toDTO(aircraftRepository.save(aircraft));
+        return aircraftMappers.toAircraftDTO(aircraftRepository.save(aircraftMappers.toAircraftEntity(aircraftDTO)));
     }
 
     @Override
     public List<AircraftDTO> getAllAircrafts(){
         List<Aircraft> aircrafts = aircraftRepository.findAll();
-        return aircrafts.stream().map(this::toDTO).collect(Collectors.toList());
+        return aircrafts.stream().map(aircraft -> aircraftMappers.toAircraftDTO(aircraft)).collect(Collectors.toList());
     }
 
     @Override
     public AircraftDTO getAircraftById(Long id){
         Aircraft aircraft = aircraftRepository.findById(id).orElseThrow(()-> new EntityNotFoundException(String.format("El avion con el ID %d no fue encontrado", id)));
-        return toDTO(aircraft);
+        return aircraftMappers.toAircraftDTO(aircraft);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class AircraftService implements IAircraftService{
         if(aircraftDTO.getAircraftModel() != null){aircraft.setAircraftModel(aircraftDTO.getAircraftModel());}
         if(aircraftDTO.getMaxSeats() != null){aircraft.setMaxSeats(aircraftDTO.getMaxSeats());}
         if(aircraftDTO.getSeatConfiguration() != null){aircraft.setSeatConfiguration(aircraftDTO.getSeatConfiguration());}
-        return toDTO(aircraftRepository.save(aircraft));
+        return aircraftMappers.toAircraftDTO(aircraftRepository.save(aircraft));
     }
 
     @Override
@@ -54,14 +54,4 @@ public class AircraftService implements IAircraftService{
         aircraftRepository.deleteById(id);
     }
 
-
-    //Method to get the equivalent DTO from an Entity
-    private AircraftDTO toDTO(Aircraft aircraft){
-        AircraftDTO aircraftDTO = new AircraftDTO();
-        aircraftDTO.setId(aircraft.getId());
-        aircraftDTO.setAircraftModel(aircraft.getAircraftModel());
-        aircraftDTO.setMaxSeats(aircraft.getMaxSeats());
-        aircraftDTO.setSeatConfiguration(aircraft.getSeatConfiguration());
-        return aircraftDTO;
-    }
 }

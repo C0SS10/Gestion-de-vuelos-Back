@@ -1,17 +1,23 @@
 package com.udea.gestiondevuelos.Domain.DTO;
 
 import com.udea.gestiondevuelos.Domain.Enums.AircraftModel;
+import com.udea.gestiondevuelos.Domain.Enums.SeatConfiguration;
+import com.udea.gestiondevuelos.Domain.DTO.FlightDTO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AircraftDTO {
     private Long id;
     private AircraftModel aircraftModel;
     private Integer maxSeats;
-    private String seatConfiguration;
+    private SeatConfiguration seatConfiguration;
+    private List<FlightDTO> flights = new ArrayList<>();
 
     public AircraftDTO() {
     }
 
-    public AircraftDTO(Long id, AircraftModel aircraftModel, Integer maxSeats, String seatConfiguration) {
+    public AircraftDTO(Long id, AircraftModel aircraftModel, Integer maxSeats, SeatConfiguration seatConfiguration) {
         this.id = id;
         this.aircraftModel = aircraftModel;
         this.maxSeats = maxSeats;
@@ -42,11 +48,17 @@ public class AircraftDTO {
         this.maxSeats = maxSeats;
     }
 
-    public String getSeatConfiguration() {
+    public SeatConfiguration getSeatConfiguration() {
         return seatConfiguration;
     }
 
-    public void setSeatConfiguration(String seatConfiguration) {
+    public void setSeatConfiguration(SeatConfiguration seatConfiguration) {
         this.seatConfiguration = seatConfiguration;
+    }
+    public List<FlightDTO> getFlights() {
+        return flights;
+    }
+    public void setFlights(List<FlightDTO> flights) {
+        this.flights = flights;
     }
 }

@@ -23,8 +23,9 @@ public class Flight {
 
     private String destinationCity;
 
-    @Enumerated(EnumType.STRING)
-    private AircraftModel aircraftModel;
+    @ManyToOne
+    @JoinColumn(name = "aircraft_id", nullable = false)
+    private Aircraft aircraft;
 
     private LocalDate departureDate;
 
@@ -43,13 +44,13 @@ public class Flight {
     public Flight() {
     }
 
-    public Flight(Long id, String flightNumber, FlightType flightType, String departureCity, String destinationCity, AircraftModel aircraftModel, LocalDate departureDate, LocalDate arrivalDate, LocalTime departureTime, LocalTime arrivalTime, Double price, Double taxPercentage, Double surcharge) {
+    public Flight(Long id, String flightNumber, FlightType flightType, String departureCity, String destinationCity, Aircraft aircraft, LocalDate departureDate, LocalDate arrivalDate, LocalTime departureTime, LocalTime arrivalTime, Double price, Double taxPercentage, Double surcharge) {
         this.id = id;
         this.flightNumber = flightNumber;
         this.flightType = flightType;
         this.departureCity = departureCity;
         this.destinationCity = destinationCity;
-        this.aircraftModel = aircraftModel;
+        this.aircraft = aircraft;
         this.departureDate = departureDate;
         this.arrivalDate = arrivalDate;
         this.departureTime = departureTime;
@@ -99,12 +100,12 @@ public class Flight {
         this.destinationCity = destinationCity;
     }
 
-    public AircraftModel getAircraftModel() {
-        return aircraftModel;
+    public Aircraft getAircraft() {
+        return aircraft;
     }
 
-    public void setAircraftModel(AircraftModel aircraftModel) {
-        this.aircraftModel = aircraftModel;
+    public void setAircraft(Aircraft aircraft) {
+        this.aircraft = aircraft;
     }
 
     public LocalDate getDepartureDate() {

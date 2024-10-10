@@ -1,6 +1,10 @@
 package com.udea.gestiondevuelos.Domain.model;
 import com.udea.gestiondevuelos.Domain.Enums.AircraftModel;
+import com.udea.gestiondevuelos.Domain.Enums.SeatConfiguration;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Aircraft {
@@ -14,12 +18,15 @@ public class Aircraft {
 
     private Integer maxSeats;
 
-    private String seatConfiguration;
+    private SeatConfiguration seatConfiguration;
+
+    @OneToMany(mappedBy = "aircraft", cascade = CascadeType.ALL)
+    private List<Flight> flights = new ArrayList<>();
 
     public Aircraft() {
     }
 
-    public Aircraft(Long id, AircraftModel aircraftModel, Integer maxSeats, String seatConfiguration) {
+    public Aircraft(Long id, AircraftModel aircraftModel, Integer maxSeats, SeatConfiguration seatConfiguration) {
         this.id = id;
         this.aircraftModel = aircraftModel;
         this.maxSeats = maxSeats;
@@ -50,11 +57,18 @@ public class Aircraft {
         this.maxSeats = maxSeats;
     }
 
-    public String getSeatConfiguration() {
+    public SeatConfiguration getSeatConfiguration() {
         return seatConfiguration;
     }
 
-    public void setSeatConfiguration(String seatConfiguration) {
+    public void setSeatConfiguration(SeatConfiguration seatConfiguration) {
         this.seatConfiguration = seatConfiguration;
+    }
+
+    public List<Flight> getFlights() {
+        return flights;
+    }
+    public void setFlights(List<Flight> flights) {
+        this.flights = flights;
     }
 }
