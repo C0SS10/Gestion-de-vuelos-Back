@@ -40,14 +40,14 @@ public class FlightService implements  IFlightService{
     }
 
     @Override
-    public List<FlightDTO> getFlightsByFilters(String origin, String destination, String departureDate, String arrivalDate){
+    public List<FlightDTO> filterFlights(String departureCity, String destinationCity, String departureDate, String arrivalDate){
         QFlight flight = QFlight.flight;
         BooleanExpression predicate = flight.isNotNull();
-        if(origin != null){
-            predicate = predicate.and(flight.departureCity.eq(origin));
+        if(departureCity != null){
+            predicate = predicate.and(flight.departureCity.eq(departureCity));
         }
-        if(destination != null){
-            predicate = predicate.and(flight.destinationCity.eq(destination));
+        if(destinationCity != null){
+            predicate = predicate.and(flight.destinationCity.eq(destinationCity));
         }
         if(departureDate != null){
             LocalDate date = LocalDate.parse(departureDate);

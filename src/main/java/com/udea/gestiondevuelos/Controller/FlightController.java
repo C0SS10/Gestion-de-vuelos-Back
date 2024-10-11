@@ -18,11 +18,11 @@ public class FlightController {
 
     @QueryMapping(name = "getFlightsByFilters")
     public List<FlightDTO> getFlightsByFilters (
-            @Argument(name = "origin") String origin,
-            @Argument(name = "destination") String destination,
+            @Argument(name = "departureCity") String departureCity,
+            @Argument(name = "destinationCity") String destinationCity,
             @Argument(name = "departureDate") String departureDate,
             @Argument(name = "arrivalDate") String arrivalDate) {
-        return flightService.getFlightsByFilters(origin, destination, departureDate, arrivalDate);
+        return flightService.filterFlights(departureCity, destinationCity, departureDate, arrivalDate);
     }
 
     @QueryMapping(name = "flightById")
