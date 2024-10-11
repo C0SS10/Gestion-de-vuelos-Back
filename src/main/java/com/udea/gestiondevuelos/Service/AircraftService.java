@@ -1,15 +1,15 @@
 package com.udea.gestiondevuelos.Service;
 
-import com.querydsl.core.types.dsl.BooleanExpression;
 import com.udea.gestiondevuelos.Domain.DTO.AircraftDTO;
 import com.udea.gestiondevuelos.Domain.Enums.AircraftModel;
 import com.udea.gestiondevuelos.Domain.Enums.SeatConfiguration;
 import com.udea.gestiondevuelos.Domain.model.Aircraft;
-import com.udea.gestiondevuelos.Domain.model.QAircraft;
 import com.udea.gestiondevuelos.Mappers.AircraftMappers;
 import com.udea.gestiondevuelos.Repository.IAircraftRepository;
+import com.udea.gestiondevuelos.Specification.AircraftSpecification;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,23 +31,23 @@ public class AircraftService implements IAircraftService{
     }
 
     @Override
-    public List<AircraftDTO> filterAircrafts(String aircraftModel, Integer maxSeats, String seatConfiguration){
-        QAircraft aircraft = QAircraft.aircraft;
-        BooleanExpression predicate = aircraft.isNotNull();
-        if(aircraftModel != null){
-            AircraftModel modelEnum = AircraftModel.valueOf(aircraftModel);
-            predicate = predicate.and(aircraft.aircraftModel.eq(modelEnum));
+    public List<AircraftDTO> filterAircrafts(String aircraftModel, Integer maxSeats, String seatConfiguration) {
+        Specification<Aircraft> specification = Specification.where(null);
+
+        if (aircraftModel != null) {
+            specification = specification.and(AircraftSpecification.filterByModel(AircraftModel.valueOf(aircraftModel)));
         }
-        if(maxSeats != null){
-            predicate = predicate.and(aircraft.maxSeats.goe(maxSeats));
+
+        if (maxSeats != null) {
+            specification = specification.and(AircraftSpecification.filterByMaxSeats(maxSeats));
         }
-        if(seatConfiguration != null){
-            SeatConfiguration configuration = SeatConfiguration.valueOf(seatConfiguration);
-            predicate = predicate.and(aircraft.seatConfiguration.eq(configuration));
+
+        if (seatConfiguration != null) {
+            specification = specification.and(AircraftSpecification.filterBySeatConfiguration(SeatConfiguration.valueOf(seatConfiguration)));
         }
-        List<Aircraft> aircrafts = (List<Aircraft>) aircraftRepository.findAll(predicate); // Casting a List
-        return aircrafts.stream()
-                .map(item -> aircraftMappers.toAircraftDTO(item))
+
+        return aircraftRepository.findAll(specification).stream()
+                .map(aircraft -> aircraftMappers.toAircraftDTO(aircraft))
                 .collect(Collectors.toList());
     }
 
