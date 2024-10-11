@@ -11,7 +11,7 @@ public class AircraftSpecification {
             if(model == null) {
                 return cb.conjunction();
             }
-            return cb.equal(root.get("model"), model);
+            return cb.equal(root.get("aircraftModel"), model);
         };
     }
 
