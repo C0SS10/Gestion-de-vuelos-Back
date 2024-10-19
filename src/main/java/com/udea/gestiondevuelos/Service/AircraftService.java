@@ -8,21 +8,23 @@ import com.udea.gestiondevuelos.mappers.AircraftMappers;
 import com.udea.gestiondevuelos.repository.IAircraftRepository;
 import com.udea.gestiondevuelos.specification.AircraftSpecification;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class AircraftService implements IAircraftService {
 
-    @Autowired
-    private IAircraftRepository aircraftRepository;
+    private final IAircraftRepository aircraftRepository;
 
-    @Autowired
-    private AircraftMappers aircraftMappers;
+    private final AircraftMappers aircraftMappers;
+
+    // Inyección por constructor
+    public AircraftService(IAircraftRepository aircraftRepository, AircraftMappers aircraftMappers) {
+        this.aircraftRepository = aircraftRepository;
+        this.aircraftMappers = aircraftMappers;
+    }
 
     @Override
     public AircraftDTO createAircraft(AircraftDTO aircraftDTO) {
@@ -47,9 +49,10 @@ public class AircraftService implements IAircraftService {
                     .and(AircraftSpecification.filterBySeatConfiguration(SeatConfiguration.valueOf(seatConfiguration)));
         }
 
+        // Cambiar a Stream.toList() para obtener una lista inmodificable
         return aircraftRepository.findAll(specification).stream()
                 .map(aircraft -> aircraftMappers.toAircraftDTO(aircraft))
-                .collect(Collectors.toList());
+                .toList(); // Lista inmodificable
     }
 
     @Override
