@@ -4,8 +4,6 @@ import com.udea.gestiondevuelos.domain.dto.AircraftDTO;
 import com.udea.gestiondevuelos.domain.model.Aircraft;
 import org.springframework.stereotype.Component;
 
-import java.util.stream.Collectors;
-
 @Component
 public class AircraftMappers {
     public Aircraft toAircraftEntity(AircraftDTO aircraftDTO) {
@@ -14,8 +12,11 @@ public class AircraftMappers {
         aircraft.setAircraftModel(aircraftDTO.getAircraftModel());
         aircraft.setMaxSeats(aircraftDTO.getMaxSeats());
         aircraft.setSeatConfiguration(aircraftDTO.getSeatConfiguration());
+
+        // Cambiar a Stream.toList() para obtener una lista inmodificable
         aircraft.setFlights(aircraftDTO.getFlights().stream()
-                .map(flightDTO -> new FlightMappers().toFlightEntity(flightDTO)).collect(Collectors.toList()));
+                .map(flightDTO -> new FlightMappers().toFlightEntity(flightDTO))
+                .toList()); // Lista inmodificable
 
         return aircraft;
     }
@@ -26,8 +27,11 @@ public class AircraftMappers {
         aircraftDTO.setAircraftModel(aircraft.getAircraftModel());
         aircraftDTO.setMaxSeats(aircraft.getMaxSeats());
         aircraftDTO.setSeatConfiguration(aircraft.getSeatConfiguration());
-        aircraftDTO.setFlights(aircraft.getFlights().stream().map(flight -> new FlightMappers().toFlightDTO(flight))
-                .collect(Collectors.toList()));
+
+        // Cambiar a Stream.toList() para obtener una lista inmodificable
+        aircraftDTO.setFlights(aircraft.getFlights().stream()
+                .map(flight -> new FlightMappers().toFlightDTO(flight))
+                .toList()); // Lista inmodificable
 
         return aircraftDTO;
     }
