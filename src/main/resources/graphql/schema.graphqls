@@ -15,35 +15,12 @@ type Mutation{
 }
 
 input AircraftInput{
-    aircraftModel: AircraftModel
-    maxSeats: Int
-    seatConfiguration: SeatConfiguration
+    aircraftModel: AircraftModel!
+    maxSeats: Int!
+    seatConfiguration: SeatConfiguration!
 }
 
 input FlightInput {
-    flightNumber: String
-    flightType: FlightType
-    departureCity: String
-    destinationCity: String
-    aircraftId: ID
-    departureDate: String
-    arrivalDate: String
-    departureTime: String
-    arrivalTime: String
-    price: Float
-    taxPercentage: Float
-    surcharge: Float
-}
-
-type AircraftDTO {
-    id: ID
-    aircraftModel: AircraftModel!
-    maxSeats: Int!
-    seatConfiguration: String!
-}
-
-type FlightDTO {
-    id: ID
     flightNumber: String!
     flightType: FlightType!
     departureCity: String!
@@ -56,6 +33,29 @@ type FlightDTO {
     price: Float!
     taxPercentage: Float!
     surcharge: Float!
+}
+
+type AircraftDTO {
+    id: ID
+    aircraftModel: AircraftModel
+    maxSeats: Int
+    seatConfiguration: String
+}
+
+type FlightDTO {
+    id: ID
+    flightNumber: String
+    flightType: FlightType
+    departureCity: String
+    destinationCity: String
+    aircraftId: ID
+    departureDate: String
+    arrivalDate: String
+    departureTime: String
+    arrivalTime: String
+    price: Float
+    taxPercentage: Float
+    surcharge: Float
 }
 
 enum AircraftModel{

@@ -25,15 +25,15 @@ public class FlightDTO {
 
     private LocalTime arrivalTime;
 
-    private Double price;
+    private Float price;
 
-    private Double taxPercentage;
+    private Float taxPercentage;
 
-    private Double surcharge;
+    private Float surcharge;
 
     public FlightDTO(){}
 
-    public FlightDTO(Long id, String flightNumber, FlightType flightType, String departureCity, String destinationCity, Long aircraftId, LocalDate departureDate, LocalDate arrivalDate, LocalTime departureTime, LocalTime arrivalTime, Double price, Double taxPercentage, Double surcharge) {
+    public FlightDTO(Long id, String flightNumber, FlightType flightType, String departureCity, String destinationCity, Long aircraftId, LocalDate departureDate, LocalDate arrivalDate, LocalTime departureTime, LocalTime arrivalTime, Float price, Float taxPercentage, Float surcharge) {
         this.id = id;
         this.flightNumber = flightNumber;
         this.flightType = flightType;
@@ -129,27 +129,27 @@ public class FlightDTO {
         this.arrivalTime = arrivalTime;
     }
 
-    public Double getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
-    public Double getTaxPercentage() {
+    public Float getTaxPercentage() {
         return taxPercentage;
     }
 
-    public void setTaxPercentage(Double taxPercentage) {
+    public void setTaxPercentage(Float taxPercentage) {
         this.taxPercentage = taxPercentage;
     }
 
-    public Double getSurcharge() {
+    public Float getSurcharge() {
         return surcharge;
     }
 
-    public void setSurcharge(Double surcharge) {
+    public void setSurcharge(Float surcharge) {
         this.surcharge = surcharge;
     }
 }
