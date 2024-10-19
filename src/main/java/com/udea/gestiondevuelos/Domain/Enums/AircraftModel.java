@@ -1,4 +1,4 @@
-package com.udea.gestiondevuelos.Domain.Enums;
+package com.udea.gestiondevuelos.domain.enums;
 
 public enum AircraftModel {
     B737,

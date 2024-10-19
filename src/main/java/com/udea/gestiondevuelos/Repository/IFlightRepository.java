@@ -1,8 +1,8 @@
-package com.udea.gestiondevuelos.Repository;
+package com.udea.gestiondevuelos.repository;
 
-import com.udea.gestiondevuelos.Domain.model.Flight;
+import com.udea.gestiondevuelos.domain.model.Flight;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-public interface IFlightRepository extends JpaRepository<Flight,Long>, JpaSpecificationExecutor<Flight> {
+public interface IFlightRepository extends JpaRepository<Flight, Long>, JpaSpecificationExecutor<Flight> {
 }

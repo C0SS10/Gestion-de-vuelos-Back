@@ -1,14 +1,14 @@
-package com.udea.gestiondevuelos.Flight;
+package com.udea.gestiondevuelos.flight;
 
-import com.udea.gestiondevuelos.Domain.DTO.AircraftDTO;
-import com.udea.gestiondevuelos.Domain.DTO.FlightDTO;
-import com.udea.gestiondevuelos.Domain.model.Aircraft;
-import com.udea.gestiondevuelos.Domain.model.Flight;
-import com.udea.gestiondevuelos.Mappers.AircraftMappers;
-import com.udea.gestiondevuelos.Mappers.FlightMappers;
-import com.udea.gestiondevuelos.Repository.IFlightRepository;
-import com.udea.gestiondevuelos.Service.AircraftService;
-import com.udea.gestiondevuelos.Service.FlightService;
+import com.udea.gestiondevuelos.domain.dto.AircraftDTO;
+import com.udea.gestiondevuelos.domain.dto.FlightDTO;
+import com.udea.gestiondevuelos.domain.model.Aircraft;
+import com.udea.gestiondevuelos.domain.model.Flight;
+import com.udea.gestiondevuelos.mappers.AircraftMappers;
+import com.udea.gestiondevuelos.mappers.FlightMappers;
+import com.udea.gestiondevuelos.repository.IFlightRepository;
+import com.udea.gestiondevuelos.service.AircraftService;
+import com.udea.gestiondevuelos.service.FlightService;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

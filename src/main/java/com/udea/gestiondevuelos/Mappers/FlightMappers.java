@@ -1,19 +1,19 @@
-package com.udea.gestiondevuelos.Mappers;
+package com.udea.gestiondevuelos.mappers;
 
-import com.udea.gestiondevuelos.Domain.DTO.FlightDTO;
-import com.udea.gestiondevuelos.Domain.model.Flight;
+import com.udea.gestiondevuelos.domain.dto.FlightDTO;
+import com.udea.gestiondevuelos.domain.model.Flight;
 import org.springframework.stereotype.Component;
 
 @Component
 public class FlightMappers {
-    public Flight toFlightEntity(FlightDTO flightDTO){
+    public Flight toFlightEntity(FlightDTO flightDTO) {
         Flight flight = new Flight();
         flight.setId(flightDTO.getId());
         flight.setFlightNumber(flightDTO.getFlightNumber());
         flight.setFlightType(flightDTO.getFlightType());
         flight.setDepartureCity(flightDTO.getDepartureCity());
         flight.setDestinationCity(flightDTO.getDestinationCity());
-        /*Aircraft has to be linked at service layer*/
+        /* Aircraft has to be linked at service layer */
         flight.setDepartureDate(flightDTO.getDepartureDate());
         flight.setArrivalDate(flightDTO.getArrivalDate());
         flight.setDepartureTime(flightDTO.getDepartureTime());
@@ -23,7 +23,8 @@ public class FlightMappers {
         flight.setSurcharge(flightDTO.getSurcharge());
         return flight;
     }
-    public FlightDTO toFlightDTO(Flight flight){
+
+    public FlightDTO toFlightDTO(Flight flight) {
         FlightDTO flightDTO = new FlightDTO();
         flightDTO.setId(flight.getId());
         flightDTO.setFlightNumber(flight.getFlightNumber());

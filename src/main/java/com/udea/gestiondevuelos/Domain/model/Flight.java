@@ -1,7 +1,6 @@
-package com.udea.gestiondevuelos.Domain.model;
+package com.udea.gestiondevuelos.domain.model;
 
-import com.udea.gestiondevuelos.Domain.Enums.AircraftModel;
-import com.udea.gestiondevuelos.Domain.Enums.FlightType;
+import com.udea.gestiondevuelos.domain.enums.FlightType;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -44,7 +43,9 @@ public class Flight {
     public Flight() {
     }
 
-    public Flight(Long id, String flightNumber, FlightType flightType, String departureCity, String destinationCity, Aircraft aircraft, LocalDate departureDate, LocalDate arrivalDate, LocalTime departureTime, LocalTime arrivalTime, Float price, Float taxPercentage, Float surcharge) {
+    public Flight(Long id, String flightNumber, FlightType flightType, String departureCity, String destinationCity,
+            Aircraft aircraft, LocalDate departureDate, LocalDate arrivalDate, LocalTime departureTime,
+            LocalTime arrivalTime, Float price, Float taxPercentage, Float surcharge) {
         this.id = id;
         this.flightNumber = flightNumber;
         this.flightType = flightType;

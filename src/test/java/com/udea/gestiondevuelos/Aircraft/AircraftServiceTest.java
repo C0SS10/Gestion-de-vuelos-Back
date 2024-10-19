@@ -1,12 +1,12 @@
-package com.udea.gestiondevuelos.Aircraft;
+package com.udea.gestiondevuelos.aircraft;
 
-import com.udea.gestiondevuelos.Domain.DTO.AircraftDTO;
-import com.udea.gestiondevuelos.Domain.Enums.AircraftModel;
-import com.udea.gestiondevuelos.Domain.Enums.SeatConfiguration;
-import com.udea.gestiondevuelos.Domain.model.Aircraft;
-import com.udea.gestiondevuelos.Mappers.AircraftMappers;
-import com.udea.gestiondevuelos.Repository.IAircraftRepository;
-import com.udea.gestiondevuelos.Service.AircraftService;
+import com.udea.gestiondevuelos.domain.dto.AircraftDTO;
+import com.udea.gestiondevuelos.domain.enums.AircraftModel;
+import com.udea.gestiondevuelos.domain.enums.SeatConfiguration;
+import com.udea.gestiondevuelos.domain.model.Aircraft;
+import com.udea.gestiondevuelos.mappers.AircraftMappers;
+import com.udea.gestiondevuelos.repository.IAircraftRepository;
+import com.udea.gestiondevuelos.service.AircraftService;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -42,7 +42,7 @@ public class AircraftServiceTest {
     }
 
     @Test
-    void testCreateAircraft(){
+    void testCreateAircraft() {
         System.out.println("Test createAircraft");
         AircraftDTO aircraftDTO = new AircraftDTO();
         Aircraft aircraft = new Aircraft();
@@ -58,7 +58,7 @@ public class AircraftServiceTest {
     }
 
     @Test
-    void filterAircraftTest(){
+    void filterAircraftTest() {
         System.out.println("Test filterAircraftTest");
         Aircraft aircraft = new Aircraft();
         AircraftDTO aircraftDTO = new AircraftDTO();
@@ -66,7 +66,8 @@ public class AircraftServiceTest {
         when(aircraftRepository.findAll(any(Specification.class))).thenReturn(Collections.singletonList(aircraft));
         when(aircraftMappers.toAircraftDTO((any(Aircraft.class)))).thenReturn(aircraftDTO);
 
-        List<AircraftDTO> result = aircraftService.filterAircrafts(AircraftModel.A320.toString(), 300, SeatConfiguration.TWO_FOUR_TWO.toString());
+        List<AircraftDTO> result = aircraftService.filterAircrafts(AircraftModel.A320.toString(), 300,
+                SeatConfiguration.TWO_FOUR_TWO.toString());
 
         assertEquals(1, result.size());
 
@@ -93,7 +94,7 @@ public class AircraftServiceTest {
     @Test
     void testUpdateAircraft() {
         System.out.println("Test updateAircraft");
-        Aircraft aircraft = new Aircraft();  // Se crea una entidad Aircraft simulada.
+        Aircraft aircraft = new Aircraft(); // Se crea una entidad Aircraft simulada.
         AircraftDTO dto = new AircraftDTO(); // Se crea un DTO de prueba.
 
         when(aircraftRepository.findById(anyLong())).thenReturn(Optional.of(aircraft));
@@ -125,7 +126,8 @@ public class AircraftServiceTest {
         EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> {
             aircraftService.deleteAircraft(1L);
         });
-        // Verifica que se lanza una excepción cuando no se encuentra la aeronave para eliminar.
+        // Verifica que se lanza una excepción cuando no se encuentra la aeronave para
+        // eliminar.
 
         assertEquals("El avion con el ID 1 no fue encontrado", exception.getMessage());
         // Verifica que el mensaje de la excepción es el correcto.
@@ -139,7 +141,8 @@ public class AircraftServiceTest {
         // Se simula que el repositorio encuentra la aeronave por su ID.
 
         doNothing().when(aircraftRepository).deleteById(anyLong());
-        // Se simula que el metodo deleteById no hace nada (ya que no hay retorno esperado).
+        // Se simula que el metodo deleteById no hace nada (ya que no hay retorno
+        // esperado).
 
         assertDoesNotThrow(() -> aircraftService.deleteAircraft(1L));
         // Verifica que no se lanza ninguna excepción durante la eliminación.

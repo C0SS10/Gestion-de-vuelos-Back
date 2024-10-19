@@ -1,7 +1,7 @@
-package com.udea.gestiondevuelos.Controller;
+package com.udea.gestiondevuelos.controller;
 
-import com.udea.gestiondevuelos.Domain.DTO.FlightDTO;
-import com.udea.gestiondevuelos.Service.IFlightService;
+import com.udea.gestiondevuelos.domain.dto.FlightDTO;
+import com.udea.gestiondevuelos.service.IFlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -17,7 +17,7 @@ public class FlightController {
     public IFlightService flightService;
 
     @QueryMapping(name = "getFlightsByFilters")
-    public List<FlightDTO> getFlightsByFilters (
+    public List<FlightDTO> getFlightsByFilters(
             @Argument(name = "departureCity") String departureCity,
             @Argument(name = "destinationCity") String destinationCity,
             @Argument(name = "departureDate") String departureDate,
@@ -26,22 +26,22 @@ public class FlightController {
     }
 
     @QueryMapping(name = "flightById")
-    public FlightDTO flightById(@Argument(name = "id")Long id){
-        return  flightService.getFlightById(id);
+    public FlightDTO flightById(@Argument(name = "id") Long id) {
+        return flightService.getFlightById(id);
     }
 
     @MutationMapping(name = "createFlight")
-    public FlightDTO createFlight(@Argument(name = "input") FlightDTO input){
+    public FlightDTO createFlight(@Argument(name = "input") FlightDTO input) {
         return flightService.createFlight(input);
     }
 
     @MutationMapping(name = "updateFlight")
-    public FlightDTO updateFlight(@Argument(name = "id")Long id, @Argument(name = "input") FlightDTO input){
-        return  flightService.updateFlight(id,input);
+    public FlightDTO updateFlight(@Argument(name = "id") Long id, @Argument(name = "input") FlightDTO input) {
+        return flightService.updateFlight(id, input);
     }
 
     @MutationMapping(name = "deleteFlight")
-    public boolean deleteFlight(@Argument(name = "id")Long id){
+    public boolean deleteFlight(@Argument(name = "id") Long id) {
         flightService.deleteFlight(id);
         return true;
     }

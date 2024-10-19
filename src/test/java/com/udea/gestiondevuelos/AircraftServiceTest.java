@@ -1,9 +1,9 @@
 package com.udea.gestiondevuelos;
 
-import com.udea.gestiondevuelos.Domain.DTO.AircraftDTO;
-import com.udea.gestiondevuelos.Domain.Enums.AircraftModel;
-import com.udea.gestiondevuelos.Domain.Enums.SeatConfiguration;
-import com.udea.gestiondevuelos.Service.IAircraftService;
+import com.udea.gestiondevuelos.domain.dto.AircraftDTO;
+import com.udea.gestiondevuelos.domain.enums.AircraftModel;
+import com.udea.gestiondevuelos.domain.enums.SeatConfiguration;
+import com.udea.gestiondevuelos.service.IAircraftService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -35,7 +35,8 @@ public class AircraftServiceTest {
     validAircraftDTO.setMaxSeats(300);
     validAircraftDTO.setSeatConfiguration(SeatConfiguration.THREE_THREE_THREE);
 
-    // Arrange: Se crea un objeto de tipo AircraftDTO con datos incorrectos (caso fallido)
+    // Arrange: Se crea un objeto de tipo AircraftDTO con datos incorrectos (caso
+    // fallido)
     invalidAircraftDTO = new AircraftDTO();
     invalidAircraftDTO.setAircraftModel(null); // Modelo nulo
     invalidAircraftDTO.setMaxSeats(-10); // Número de asientos inválido
@@ -61,7 +62,8 @@ public class AircraftServiceTest {
     when(aircraftService.createAircraft(any(AircraftDTO.class)))
         .thenThrow(new IllegalArgumentException("Invalid aircraft data"));
 
-    // Act & Assert: Verifica que se lanza una excepción cuando se pasan datos incorrectos
+    // Act & Assert: Verifica que se lanza una excepción cuando se pasan datos
+    // incorrectos
     assertThrows(IllegalArgumentException.class, () -> {
       aircraftService.createAircraft(invalidAircraftDTO);
     });

@@ -1,6 +1,7 @@
-package com.udea.gestiondevuelos.Domain.model;
-import com.udea.gestiondevuelos.Domain.Enums.AircraftModel;
-import com.udea.gestiondevuelos.Domain.Enums.SeatConfiguration;
+package com.udea.gestiondevuelos.domain.model;
+
+import com.udea.gestiondevuelos.domain.enums.AircraftModel;
+import com.udea.gestiondevuelos.domain.enums.SeatConfiguration;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -68,6 +69,7 @@ public class Aircraft {
     public List<Flight> getFlights() {
         return flights;
     }
+
     public void setFlights(List<Flight> flights) {
         this.flights = flights;
     }

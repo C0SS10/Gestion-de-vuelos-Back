@@ -1,14 +1,14 @@
-package com.udea.gestiondevuelos.Specification;
+package com.udea.gestiondevuelos.specification;
 
-import com.udea.gestiondevuelos.Domain.Enums.AircraftModel;
-import com.udea.gestiondevuelos.Domain.Enums.SeatConfiguration;
-import com.udea.gestiondevuelos.Domain.model.Aircraft;
+import com.udea.gestiondevuelos.domain.enums.AircraftModel;
+import com.udea.gestiondevuelos.domain.enums.SeatConfiguration;
+import com.udea.gestiondevuelos.domain.model.Aircraft;
 import org.springframework.data.jpa.domain.Specification;
 
 public class AircraftSpecification {
     public static Specification<Aircraft> filterByModel(AircraftModel model) {
         return (root, query, cb) -> {
-            if(model == null) {
+            if (model == null) {
                 return cb.conjunction();
             }
             return cb.equal(root.get("aircraftModel"), model);
@@ -17,7 +17,7 @@ public class AircraftSpecification {
 
     public static Specification<Aircraft> filterByMaxSeats(Integer maxSeats) {
         return (root, query, cb) -> {
-            if(maxSeats == null) {
+            if (maxSeats == null) {
                 return cb.conjunction();
             }
             return cb.greaterThanOrEqualTo(root.get("maxSeats"), maxSeats);
@@ -26,7 +26,7 @@ public class AircraftSpecification {
 
     public static Specification<Aircraft> filterBySeatConfiguration(SeatConfiguration seatConfiguration) {
         return (root, query, cb) -> {
-            if(seatConfiguration == null) {
+            if (seatConfiguration == null) {
                 return cb.conjunction();
             }
             return cb.equal(root.get("seatConfiguration"), seatConfiguration);

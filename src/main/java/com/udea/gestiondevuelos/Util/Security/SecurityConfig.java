@@ -1,4 +1,4 @@
-package com.udea.gestiondevuelos.Util.Security;
+package com.udea.gestiondevuelos.util.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,10 +14,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // Desactiva toda la seguridad para permitir todas las solicitudes
         http
-                .authorizeRequests(authorizeRequests ->
-                        authorizeRequests
-                                .anyRequest().permitAll()
-                )
+                .authorizeRequests(authorizeRequests -> authorizeRequests
+                        .anyRequest().permitAll())
                 .csrf(csrf -> csrf.disable()); // Desactiva CSRF si es necesario para pruebas
         return http.build();
     }

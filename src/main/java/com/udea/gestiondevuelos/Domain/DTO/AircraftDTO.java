@@ -1,8 +1,7 @@
-package com.udea.gestiondevuelos.Domain.DTO;
+package com.udea.gestiondevuelos.domain.dto;
 
-import com.udea.gestiondevuelos.Domain.Enums.AircraftModel;
-import com.udea.gestiondevuelos.Domain.Enums.SeatConfiguration;
-import com.udea.gestiondevuelos.Domain.DTO.FlightDTO;
+import com.udea.gestiondevuelos.domain.enums.AircraftModel;
+import com.udea.gestiondevuelos.domain.enums.SeatConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,9 +54,11 @@ public class AircraftDTO {
     public void setSeatConfiguration(SeatConfiguration seatConfiguration) {
         this.seatConfiguration = seatConfiguration;
     }
+
     public List<FlightDTO> getFlights() {
         return flights;
     }
+
     public void setFlights(List<FlightDTO> flights) {
         this.flights = flights;
     }

@@ -1,4 +1,4 @@
-package com.udea.gestiondevuelos.Aircraft;
+package com.udea.gestiondevuelos.aircraft;
 
 public class AircraftControllerTest {
 }

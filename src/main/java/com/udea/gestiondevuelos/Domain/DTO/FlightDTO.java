@@ -1,6 +1,6 @@
-package com.udea.gestiondevuelos.Domain.DTO;
+package com.udea.gestiondevuelos.domain.dto;
 
-import com.udea.gestiondevuelos.Domain.Enums.FlightType;
+import com.udea.gestiondevuelos.domain.enums.FlightType;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -31,9 +31,12 @@ public class FlightDTO {
 
     private Float surcharge;
 
-    public FlightDTO(){}
+    public FlightDTO() {
+    }
 
-    public FlightDTO(Long id, String flightNumber, FlightType flightType, String departureCity, String destinationCity, Long aircraftId, LocalDate departureDate, LocalDate arrivalDate, LocalTime departureTime, LocalTime arrivalTime, Float price, Float taxPercentage, Float surcharge) {
+    public FlightDTO(Long id, String flightNumber, FlightType flightType, String departureCity, String destinationCity,
+            Long aircraftId, LocalDate departureDate, LocalDate arrivalDate, LocalTime departureTime,
+            LocalTime arrivalTime, Float price, Float taxPercentage, Float surcharge) {
         this.id = id;
         this.flightNumber = flightNumber;
         this.flightType = flightType;
@@ -153,4 +156,3 @@ public class FlightDTO {
         this.surcharge = surcharge;
     }
 }
-
