@@ -3,6 +3,7 @@ package com.udea.gestiondevuelos.controller;
 import com.udea.gestiondevuelos.domain.dto.AircraftDTO;
 import com.udea.gestiondevuelos.service.IAircraftService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -13,12 +14,8 @@ import java.util.List;
 @Controller
 public class AircraftController {
 
-    private final IAircraftService aircraftService;
-
-    // Inyección por constructor
-    public AircraftController(IAircraftService aircraftService) {
-        this.aircraftService = aircraftService;
-    }
+    @Autowired
+    private IAircraftService aircraftService;
 
     @QueryMapping(name = "getAircraftsByFilters")
     public List<AircraftDTO> getAircraftsByFilters(

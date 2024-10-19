@@ -8,6 +8,8 @@ import com.udea.gestiondevuelos.mappers.FlightMappers;
 import com.udea.gestiondevuelos.repository.IFlightRepository;
 import com.udea.gestiondevuelos.specification.FlightSpecification;
 import jakarta.persistence.EntityNotFoundException;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -18,22 +20,17 @@ import java.util.stream.Collectors;
 @Service
 public class FlightService implements IFlightService {
 
-    public final IFlightRepository flightRepository;
+    @Autowired
+    public IFlightRepository flightRepository;
 
-    public final FlightMappers flightMappers;
+    @Autowired
+    public FlightMappers flightMappers;
 
-    public final AircraftMappers aircraftMappers;
+    @Autowired
+    public AircraftMappers aircraftMappers;
 
-    public final AircraftService aircraftService;
-
-    // Inyección por constructor
-    public FlightService(IFlightRepository flightRepository, FlightMappers flightMappers,
-            AircraftMappers aircraftMappers, AircraftService aircraftService) {
-        this.flightRepository = flightRepository;
-        this.flightMappers = flightMappers;
-        this.aircraftMappers = aircraftMappers;
-        this.aircraftService = aircraftService;
-    }
+    @Autowired
+    public AircraftService aircraftService;
 
     @Override
     public FlightDTO createFlight(FlightDTO input) {

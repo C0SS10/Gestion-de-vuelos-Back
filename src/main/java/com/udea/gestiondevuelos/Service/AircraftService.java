@@ -8,6 +8,8 @@ import com.udea.gestiondevuelos.mappers.AircraftMappers;
 import com.udea.gestiondevuelos.repository.IAircraftRepository;
 import com.udea.gestiondevuelos.specification.AircraftSpecification;
 import jakarta.persistence.EntityNotFoundException;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -16,15 +18,11 @@ import java.util.List;
 @Service
 public class AircraftService implements IAircraftService {
 
-    private final IAircraftRepository aircraftRepository;
+    @Autowired
+    private IAircraftRepository aircraftRepository;
 
-    private final AircraftMappers aircraftMappers;
-
-    // Inyección por constructor
-    public AircraftService(IAircraftRepository aircraftRepository, AircraftMappers aircraftMappers) {
-        this.aircraftRepository = aircraftRepository;
-        this.aircraftMappers = aircraftMappers;
-    }
+    @Autowired
+    private AircraftMappers aircraftMappers;
 
     @Override
     public AircraftDTO createAircraft(AircraftDTO aircraftDTO) {
