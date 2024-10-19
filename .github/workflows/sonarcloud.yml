@@ -45,4 +45,4 @@ jobs:
           -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
       - name: Verificar archivo de cobertura de JaCoCo
         run: |
-          if [ -f target/site/jacoco/jacoco.xml ]; then echo "Archivo de cobertura encontrado"; else echo "Archivo de cobertura no encontrado"; fi
+          if [ -f target/site/jacoco/jacoco.xml ]; then echo "Archivo de cobertura encontrado 🧪"; else echo "Archivo de cobertura no encontrado"; fi
