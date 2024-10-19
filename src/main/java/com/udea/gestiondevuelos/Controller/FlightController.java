@@ -2,6 +2,7 @@ package com.udea.gestiondevuelos.controller;
 
 import com.udea.gestiondevuelos.domain.dto.FlightDTO;
 import com.udea.gestiondevuelos.service.IFlightService;
+
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
