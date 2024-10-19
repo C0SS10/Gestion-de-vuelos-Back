@@ -9,9 +9,9 @@ public interface IAircraftService {
 
     List<AircraftDTO> filterAircrafts(String aircraftModel, Integer maxSeats, String seatConfiguration);
 
-    AircraftDTO getAircraftById(Long Id);
+    AircraftDTO getAircraftById(Long id);
 
     AircraftDTO updateAircraft(Long id, AircraftDTO aircraftDTO);
 
-    void deleteAircraft(Long Id);
+    void deleteAircraft(Long id);
 }

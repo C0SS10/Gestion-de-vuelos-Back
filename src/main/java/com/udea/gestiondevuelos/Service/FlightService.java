@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class FlightService implements IFlightService {
@@ -64,7 +63,7 @@ public class FlightService implements IFlightService {
 
         return flightRepository.findAll(specification).stream()
                 .map(flight -> flightMappers.toFlightDTO(flight))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

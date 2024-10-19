@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-public class AircraftServiceTest {
+class AircraftServiceTest {
   @Mock
   private IAircraftService aircraftService;
 
@@ -43,7 +43,7 @@ public class AircraftServiceTest {
   }
 
   @Test
-  public void testCreateAircraft() {
+  void testCreateAircraft() {
     // Este método se encarga de simular el comportamiento del método createAircraft
     // de la clase AircraftService
     when(aircraftService.createAircraft(validAircraftDTO)).thenReturn(validAircraftDTO);
@@ -57,7 +57,7 @@ public class AircraftServiceTest {
   }
 
   @Test
-  public void testCreateAircraftInvalidData() {
+  void testCreateAircraftInvalidData() {
     // Arrange: Simulación de error al intentar crear un avión con datos incorrectos
     when(aircraftService.createAircraft(any(AircraftDTO.class)))
         .thenThrow(new IllegalArgumentException("Invalid aircraft data"));
