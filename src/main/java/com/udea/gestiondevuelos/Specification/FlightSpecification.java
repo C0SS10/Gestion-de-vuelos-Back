@@ -6,6 +6,10 @@ import org.springframework.data.jpa.domain.Specification;
 import java.time.LocalDate;
 
 public class FlightSpecification {
+    // Agregar un constructor privado para ocultar el constructor público
+    private FlightSpecification() {
+    }
+
     public static Specification<Flight> filterByDepartureCity(String departureCity) {
         return (root, query, cb) -> {
             if (departureCity == null || departureCity.isEmpty()) {

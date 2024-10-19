@@ -53,10 +53,11 @@ public class FlightServiceTest {
     @Test
     void testCreateFlight() {
         FlightDTO flightDTO = new FlightDTO();
-        flightDTO.setAircraftId(1L); // Asegúrate de que el ID del avión no sea null
+        flightDTO.setAircraftId(1L);
         Flight flight = new Flight();
+        flight.setId(1L);
         Aircraft aircraft = new Aircraft();
-        aircraft.setId(1L); // Asegúrate de que el avión tenga un ID
+        aircraft.setId(1L);
 
         // Simula el mapeo del DTO a la entidad
         when(flightMappers.toFlightEntity(any(FlightDTO.class))).thenReturn(flight);

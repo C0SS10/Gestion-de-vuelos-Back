@@ -6,6 +6,10 @@ import com.udea.gestiondevuelos.domain.model.Aircraft;
 import org.springframework.data.jpa.domain.Specification;
 
 public class AircraftSpecification {
+    // Agregar un constructor privado para ocultar el constructor público
+    private AircraftSpecification() {
+    }
+
     public static Specification<Aircraft> filterByModel(AircraftModel model) {
         return (root, query, cb) -> {
             if (model == null) {
